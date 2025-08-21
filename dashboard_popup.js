@@ -1,8 +1,9 @@
 const tbody = document.getElementById("requests");
 
 // Listen for messages from background.js
-chrome.runtime.onMessage.addListener((msg) => {
-  if (msg.type === "API_REQUEST") {
+chrome.runtime.onMessage.addListener((msg, sender) => {
+  // Check if the message is from the background script and the active tab
+  if (msg.type === "API_REQUEST" && sender.tab && sender.tab.active) {
     const { method, url, statusCode } = msg.payload;
     const tr = document.createElement("tr");
     tr.innerHTML = `

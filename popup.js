@@ -67,13 +67,6 @@
     }
   
     document.addEventListener("DOMContentLoaded", () => {
-      const openDashboardBtn = document.getElementById("openDashboard");
-      if (openDashboardBtn) {
-        openDashboardBtn.addEventListener("click", () => {
-          chrome.tabs.create({ url: chrome.runtime.getURL("dashboard.html") });
-        });
-      }
-  
       function showFields() {
         const t = $type.value;
         $rewriteFields.style.display = t === "rewrite" ? "block" : "none";

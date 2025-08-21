@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+</head>
+<body>
+<div class="header">
+<h3 style="margin:0">API Interceptor</h3>
+<label class="row" style="gap:6px">
+<span class="muted">Enabled</span>
+<input type="checkbox" id="enabledToggle" />
+</label>
+</div>
+
+
+<details>
+<summary><strong>Add rule</strong></summary>
+<div class="row">
+<select id="ruleType">
+<option value="mock">Mock response</option>
+<option value="rewrite">Rewrite URL</option>
+<option value="headers">Modify Request Headers</option>
+<option value="block">Block</option>
+</select>
+</div>
+<div class="row">
+<input id="match" type="text" placeholder="Match pattern (substring or /regex/flags)" />
+</div>
+<div id="rewriteFields" class="row" style="display:none">
+<input id="rewriteTo" type="text" placeholder="Rewrite to URL (use $& or capture groups if regex)" />
+</div>
+<div id="headersFields" style="display:none">
+<div class="row"><textarea id="headersJson" placeholder='Request headers JSON, e.g. {"X-Debug":"1"}'></textarea></div>
+</div>
+<div id="mockFields" style="display:block">
+<div class="row"><textarea id="mockJson" placeholder='Mock JSON body, e.g. {"status":"ok"}'></textarea></div>
+<div class="row"><input id="mockStatus" type="text" placeholder="HTTP status (default 200)" /></div>
+<div class="row"><input id="mockHeaders" type="text" placeholder='Optional response headers JSON' /></div>
+</div>
+<div class="row"><button id="addRule" class="primary">Add rule</button></div>
+</details>
+
+
+<h4>Rules</h4>
+<div id="rules"></div>
+
+
+<div class="row" style="justify-content: space-between; margin-top: 10px">
+<button class="ghost" id="exportBtn">Export</button>
+<button class="ghost" id="importBtn">Import</button>
+<button class="ghost" id="clearBtn">Clear</button>
+</div>
+
+
+<p class="muted">Matches apply to <span class="mono">fetch()</span> from pages you visit. For XHR/WebSocket, use future versions.</p>
+<button id="openDashboard">Open Dashboard</button>
+
+<script src="popup.js"></script>
+
+</body>
+</html>

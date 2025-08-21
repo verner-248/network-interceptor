@@ -1,0 +1,42 @@
+{
+    "manifest_version": 3,
+    "name": "API Interceptor",
+    "version": "0.1.0",
+    "description": "Intercept, view, and edit API calls from the browser.",
+  
+    "background": {
+      "service_worker": "background.js"
+    },
+  
+    "action": {
+      "default_popup": "popup.html"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content/clickListener.js"],
+        "run_at": "document_start"
+      }
+    ],
+  
+    "permissions": [
+      "storage",
+      "scripting",
+      "tabs",
+      "webRequest",
+      "webRequestBlocking"
+    ],
+  
+    "host_permissions": [
+      "<all_urls>"
+    ],
+  
+    "web_accessible_resources": [
+      {
+        "resources": ["dashboard.html", "dashboard.js"],
+        "matches": ["<all_urls>"]
+      }
+    ]
+  }
+  
